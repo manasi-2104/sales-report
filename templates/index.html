@@ -3,35 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALES REPORT</title>
+    <title>DAILY REPORT</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div class="form-wrapper">
+
 <section class="form-card header-card">
     <div class="gold-top"></div>
     <div class="header-content">
-        <h1>SALES REPORT</h1>
+        <h1>DAILY REPORT</h1>
         <h2>Dear Team, Fill Your Report Daily!!</h2>
-    </div>
-    <div class="account-bar">
-        <div><strong>manasirawool2104@gmail.com</strong> <a href="#" onclick="return false;">Switch account</a><div class="not-shared">✉ <span>Not shared</span></div></div>
-        <div class="cloud">☁</div>
     </div>
     <div class="required-note"><span>*</span> Indicates required question</div>
 </section>
+
 <form action="/submit" method="POST" id="salesForm">
-<section class="form-card"><label class="question-title" for="date">Date <span>*</span></label><div class="field-hint">Date</div><input class="date-input" type="date" id="date" name="date" required></section>
-<section class="form-card"><fieldset><legend class="question-title">Supervisor Name <span>*</span></legend><label class="radio-row"><input type="radio" name="supervisor" value="Suraj Salekar" required><span>Suraj Salekar</span></label></fieldset></section>
-<section class="form-card"><fieldset><legend class="question-title">Promoter Name/Mobile Number <span>*</span></legend>
-{% for x in ["A.Raheman Chandpasha Inamdar/7378430630","Tarkeshwar Jivna jadhav/8766701553","Mayur Dattratray Chandurkar/9022729180","Macchindra/7499006272","Vishnu Kamalakar Kambale/8767576249","Omkar Sunil Bhosale/7507718279","Ajay Vishnu Mane /9834805129"] %}<label class="radio-row"><input type="radio" name="promoter" value="{{ x }}" required><span>{{ x }}</span></label>{% endfor %}
-</fieldset></section>
-<section class="form-card"><fieldset><legend class="question-title">D Mart Stores <span>*</span></legend>
-{% for x in ["4133 Kolhapur Tarabai DMart/Kolhapur/4133/Swapnil Patil /Nikhil/Maharashtra/Kolhapur","4159 Miraj DMart/Sangli/4159/Swapnil Patil /Nikhil/Maharashtra/Sangli","4173 Dmart Wagholi/Pune/4173/Swapnil Patil /Nikhil/Maharashtra/Pune","4134 Sangli/Sangli/4134/Swapnil Patil /Nikhil/Maharashtra/Sangli","4136 Parvati DMart/Pune/4136/Swapnil Patil /Nikhil/Maharashtra/Pune","4138 kalyani nagar Dmart/Pune/4138/Swapnil Patil /Nikhil/Maharashtra/Pune","4140 Kondhwa DMart/Pune/4140/Swapnil Patil /Nikhil/Maharashtra/Pune","4145 Karad DMart/Satara/4145/Swapnil Patil /Nikhil/Maharashtra/Sangli","4149 Ambegaon DMart/Pune/4149/Swapnil Patil /Nikhil/Maharashtra/Pune","4151 Hadapsar DMart/Pune/4151/Swapnil Patil /Nikhil/Maharashtra/Pune"] %}<label class="radio-row"><input type="radio" name="store" value="{{ x }}" required><span>{{ x }}</span></label>{% endfor %}
-</fieldset></section>
-<section class="form-card"><fieldset><legend class="question-title">Attendance <span>*</span></legend>{% for x in ["p","A","wo","HD","0.75","Left","PWO"] %}<label class="radio-row"><input type="radio" name="attendance" value="{{ x }}" required><span>{{ x }}</span></label>{% endfor %}</fieldset></section>
-<section class="form-card"><fieldset><legend class="question-title">Shift</legend>{% for x in ["MORNING","NIGHT","AFTERNOON","General"] %}<label class="radio-row"><input type="radio" name="shift" value="{{ x }}"><span>{{ x }}</span></label>{% endfor %}</fieldset></section>
-<div class="button-area"><button type="submit" class="submit-btn">Submit</button><button type="reset" class="clear-btn">Clear form</button></div>
-</form></div>
-<script>document.getElementById("salesForm").addEventListener("submit",function(){const b=document.querySelector(".submit-btn");b.disabled=true;b.textContent="Submitting...";});</script>
-</body></html>
+
+<section class="form-card">
+    <label class="question-title" for="date">Date <span>*</span></label>
+    <div class="field-hint">Date</div>
+    <input class="date-input" type="date" id="date" name="date" required>
+</section>
+
+<section class="form-card">
+    <fieldset>
+        <legend class="question-title">Supervisor Name <span>*</span></legend>
+        <label class="radio-row">
+            <input type="radio" name="supervisor" value="Atish Thakur" required>
+            <span>Atish Thakur</span>
+        </label>
+    </fieldset>
+</section>
+
+<section class="form-card">
+    <fieldset>
+        <legend class="question-title">Laber Name/Mobile Number <span>*</span></legend>
+        {% for x in ["Yallpa", "Tushar", "Prakash"] %}
+        <label class="radio-row">
+            <input type="radio" name="promoter" value="{{ x }}" required>
+            <span>{{ x }}</span>
+        </label>
+        {% endfor %}
+    </fieldset>
+</section>
+
+<section class="form-card">
+    <fieldset>
+        <legend class="question-title">Company Name <span>*</span></legend>
+        <label class="radio-row">
+            <input type="radio" name="store" value="Wedding Ferniture" required>
+            <span>Wedding Ferniture</span>
+        </label>
+    </fieldset>
+</section>
+
+<section class="form-card attendance-card">
+    <fieldset>
+        <legend class="question-title">Attendance <span>*</span></legend>
+        <label class="radio-row attendance-p">
+            <input type="radio" name="attendance" value="P" required>
+            <span>P</span>
+        </label>
+        <label class="radio-row attendance-a">
+            <input type="radio" name="attendance" value="A" required>
+            <span>A</span>
+        </label>
+        <label class="radio-row attendance-wo">
+            <input type="radio" name="attendance" value="WO" required>
+            <span>WO</span>
+        </label>
+    </fieldset>
+</section>
+
+<section class="form-card">
+    <fieldset>
+        <legend class="question-title">Shift</legend>
+        <label class="radio-row">
+            <input type="radio" name="shift" value="MORNING">
+            <span>MORNING</span>
+        </label>
+        <label class="radio-row">
+            <input type="radio" name="shift" value="AFTERNOON">
+            <span>AFTERNOON</span>
+        </label>
+    </fieldset>
+</section>
+
+<div class="button-area">
+    <button type="submit" class="submit-btn">Submit</button>
+    <button type="reset" class="clear-btn">Clear form</button>
+</div>
+
+</form>
+</div>
+
+<script>
+document.getElementById("salesForm").addEventListener("submit", function () {
+    const b = document.querySelector(".submit-btn");
+    b.disabled = true;
+    b.textContent = "Submitting...";
+});
+</script>
+</body>
+</html>
